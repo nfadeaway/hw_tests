@@ -14,7 +14,7 @@ FIXTURE_YA_LOGIN_SUCCESS = [
     ('реальный логин', 'неверный пароль', False)
 ]
 
-# В ФИКСТУРУ НУЖНО ВНЕСТИ РЕАЛЬНЫЙ ТОКЕН ВМЕСТО real_token
+# В ФИКСТУРУ НУЖНО ВНЕСТИ РЕАЛЬНЫЙ ТОКЕН ВМЕСТО верный_токен
 @pytest.mark.parametrize('ya_token, folder_name, etalon', FIXTURE_CREATE_FOLDER)
 def test_create_folder(ya_token, folder_name, etalon):
     result = create_folder(ya_token, folder_name)
