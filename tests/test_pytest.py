@@ -3,15 +3,15 @@ import pytest
 from main import create_folder, delete_folder, ya_login_success
 
 FIXTURE_CREATE_FOLDER = [
-    ('real_token', 'new_folder', 201),
-    ('wrong_token', 'new_folder', 401),
-    ('real_token', 'new_folder', 409)
+    ('верный_токен', 'new_folder', 201),
+    ('неверный_токен', 'new_folder', 401),
+    ('верный_токен', 'new_folder', 409)
 ]
 
 FIXTURE_YA_LOGIN_SUCCESS = [
-    ('real_login', 'real_pass', True),
-    ('wrong_login', 'wrong_pass', False),
-    ('real_login', 'wrong_pass', False)
+    ('реальный логин', 'реальный пароль', True),
+    ('несуществующий логин', 'неверный пароль', False),
+    ('реальный логин', 'неверный пароль', False)
 ]
 
 # В ФИКСТУРУ НУЖНО ВНЕСТИ РЕАЛЬНЫЙ ТОКЕН ВМЕСТО real_token
@@ -22,7 +22,7 @@ def test_create_folder(ya_token, folder_name, etalon):
     if result == 409:
         delete_folder(ya_token, folder_name)
 
-# В ФИКСТУРУ НУЖНО ВНОСИТЬ РЕАЛЬНЫЕ ДАННЫЕ ВМЕСТО real_login И real_pass
+# В ФИКСТУРУ НУЖНО ВНОСИТЬ РЕАЛЬНЫЕ ДАННЫЕ ГДЕ НЕОБХОДИМО
 @pytest.mark.parametrize('login, password, etalon', FIXTURE_YA_LOGIN_SUCCESS)
 def test_ya_login_success(login, password, etalon):
     result = ya_login_success(login, password)
